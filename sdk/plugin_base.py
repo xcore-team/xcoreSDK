@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from ..kernel.api.contract import ExecutionMode
+from xcore.kernel.api.contract import ExecutionMode
 
 
 @dataclass

@@ -1,0 +1,109 @@
+site_name: xcoreSDK
+site_description: Plugin framework SDK for xcore — batteries included
+site_author: xcore-team
+docs_dir: docs
+repo_url: https://github.com/xcore-team/xcoreSDK
+repo_name: xcore-team/xcoreSDK
+copyright: Copyright &copy; 2025 xcore-team
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - scheme: slate
+      primary: custom
+      accent: custom
+  font:
+    text: DM Sans
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.instant
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/puzzle-outline
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/xcore-team/xcoreSDK
+  generator: false
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: "¶"
+      title: On this page
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      use_pygments: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: installation.md
+      - Concepts: concepts.md
+  - API Reference:
+      - Overview: api/index.md
+      - AutoMixin: api/automixin.md
+      - Decorators: api/decorators.md
+      - DB Adapters: api/adapters.md
+      - Events & Hooks: api/events.md
+      - Observability: api/observability.md
+      - Scheduler: api/scheduler.md
+      - Cache: api/cache.md
+      - Auth: api/auth.md
+      - Manifest: api/manifest.md
+      - Responses: api/responses.md
+  - Examples:
+      - Demo Plugin: examples/demo-plugin.md

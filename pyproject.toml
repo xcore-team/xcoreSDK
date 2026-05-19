@@ -1,0 +1,18 @@
+[project]
+name = "xcoresdk"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "xcore",
+]
+
+[tool.uv.sources]
+xcore = { git = "https://www.github.com/traoreera/xcore.git" }
+
+[dependency-groups]
+dev = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.7.6",
+]

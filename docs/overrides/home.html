@@ -1,0 +1,243 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="xc-home">
+
+  <!-- ── Hero ────────────────────────────────────────────────────────────── -->
+  <section class="xc-hero">
+    <div class="xc-hero__inner">
+
+      <div class="xc-hero__copy">
+        <div class="xc-badge">
+          <span class="xc-badge__dot"></span>
+          v1.0.0 · Python 3.12+ · MIT
+        </div>
+
+        <h1 class="xc-hero__title">
+          <span>xcore</span>SDK
+        </h1>
+
+        <p class="xc-hero__tagline">
+          Plugin framework SDK for xcore — batteries included.<br>
+          One import. Every capability.
+        </p>
+
+        <div class="xc-cta">
+          <a href="{{ 'installation/' | url }}" class="xc-btn xc-btn--primary">
+            ↗ Get Started
+          </a>
+          <a href="{{ 'api/' | url }}" class="xc-btn xc-btn--secondary">
+            API Reference
+          </a>
+        </div>
+      </div>
+
+      <div class="xc-hero__code">
+        <div class="xc-code-window">
+          <div class="xc-code-window__bar">
+            <span class="xc-code-window__dot xc-code-window__dot--r"></span>
+            <span class="xc-code-window__dot xc-code-window__dot--y"></span>
+            <span class="xc-code-window__dot xc-code-window__dot--g"></span>
+            <span class="xc-code-window__name">plugins/my_plugin/src/main.py</span>
+          </div>
+          <div class="xc-code-window__body"><pre><span class="xc-kw">from</span> xcore.sdk <span class="xc-kw">import</span> <span class="xc-cl">AutoMixin</span>, action, on_event
+<span class="xc-kw">from</span> xcore.sdk <span class="xc-kw">import</span> ok, traced, cached
+
+<span class="xc-kw">class</span> <span class="xc-cl">Plugin</span>(<span class="xc-cl">AutoMixin</span>):
+
+    <span class="xc-de">@action</span>(<span class="xc-st">"get_user"</span>)
+    <span class="xc-de">@traced</span>(<span class="xc-st">"get_user"</span>)
+    <span class="xc-de">@cached</span>(ttl=<span class="xc-nu">300</span>, key=<span class="xc-kw">lambda</span> <span class="xc-nb">self</span>, p: <span class="xc-st">f"user:{p['id']}"</span>)
+    <span class="xc-kw">async def</span> <span class="xc-fn">get_user</span>(<span class="xc-nb">self</span>, payload: <span class="xc-nb">dict</span>) <span class="xc-op">-&gt;</span> <span class="xc-nb">dict</span>:
+        db = <span class="xc-nb">self</span>.get_service(<span class="xc-st">"db"</span>)
+        <span class="xc-kw">async with</span> db.session() <span class="xc-kw">as</span> s:
+            user = <span class="xc-kw">await</span> s.get(<span class="xc-cl">User</span>, payload[<span class="xc-st">"id"</span>])
+        <span class="xc-kw">return</span> ok(user=user)
+
+    <span class="xc-de">@on_event</span>(<span class="xc-st">"user.created"</span>)
+    <span class="xc-kw">async def</span> <span class="xc-fn">welcome</span>(<span class="xc-nb">self</span>, event):
+        <span class="xc-nb">self</span>.logger.info(<span class="xc-st">"welcome %s"</span>, event.data[<span class="xc-st">"email"</span>])</pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Stats bar ────────────────────────────────────────────────────────── -->
+  <div class="xc-stats">
+    <div class="xc-stats__inner">
+      <div class="xc-stat">
+        <span class="xc-stat__value">49</span>
+        <span>public exports</span>
+      </div>
+      <span class="xc-stat__sep">·</span>
+      <div class="xc-stat">
+        <span class="xc-stat__value">6</span>
+        <span>composable mixins</span>
+      </div>
+      <span class="xc-stat__sep">·</span>
+      <div class="xc-stat">
+        <span class="xc-stat__value">Python 3.12+</span>
+      </div>
+      <span class="xc-stat__sep">·</span>
+      <div class="xc-stat">
+        <span class="xc-stat__value">FastAPI</span>
+        <span>native routes</span>
+      </div>
+      <span class="xc-stat__sep">·</span>
+      <div class="xc-stat">
+        <span class="xc-stat__value">MIT</span>
+        <span>license</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Features ─────────────────────────────────────────────────────────── -->
+  <section class="xc-features">
+    <div class="xc-features__inner">
+      <div class="xc-features__head">
+        <span class="xc-features__eyebrow">Everything you need</span>
+        <h2 class="xc-features__title">A complete plugin toolkit</h2>
+        <p class="xc-features__sub">
+          From HTTP routes to scheduled tasks — every capability is one decorator away.
+        </p>
+      </div>
+
+      <div class="xc-grid">
+
+        <div class="xc-card">
+          <div class="xc-card__icon">⬡</div>
+          <span class="xc-card__tag">class Plugin(AutoMixin)</span>
+          <h3 class="xc-card__name">AutoMixin</h3>
+          <p class="xc-card__desc">
+            All mixins composed into a single base class.
+            No boilerplate, no MRO headaches — just inherit and build.
+          </p>
+          <span class="xc-card__pill">EventMixin · HookMixin · ScheduledMixin · ...</span>
+        </div>
+
+        <div class="xc-card">
+          <div class="xc-card__icon">⚡</div>
+          <span class="xc-card__tag">@on_event · @on_hook</span>
+          <h3 class="xc-card__name">Events &amp; Hooks</h3>
+          <p class="xc-card__desc">
+            Async event bus with wildcard patterns and priority ordering.
+            Hook into kernel lifecycle events with zero wiring.
+          </p>
+          <span class="xc-card__pill">on_event("user.*") · on_hook("plugin.*.loaded")</span>
+        </div>
+
+        <div class="xc-card">
+          <div class="xc-card__icon">◉</div>
+          <span class="xc-card__tag">@traced · @counted · @timed</span>
+          <h3 class="xc-card__name">Observability</h3>
+          <p class="xc-card__desc">
+            Distributed tracing, metrics counters and histograms,
+            health checks — all declarative, all zero-config.
+          </p>
+          <span class="xc-card__pill">self.logger · self.ctx.metrics · self.ctx.tracer</span>
+        </div>
+
+        <div class="xc-card">
+          <div class="xc-card__icon">◷</div>
+          <span class="xc-card__tag">@cron · @interval</span>
+          <h3 class="xc-card__name">Scheduler</h3>
+          <p class="xc-card__desc">
+            APScheduler-backed cron expressions and fixed intervals.
+            Jobs register in <code>on_load</code>, clean up in <code>on_unload</code>.
+          </p>
+          <span class="xc-card__pill">@cron("0 9 * * MON-FRI") · @interval(seconds=30)</span>
+        </div>
+
+        <div class="xc-card">
+          <div class="xc-card__icon">◈</div>
+          <span class="xc-card__tag">@cached · @invalidate</span>
+          <h3 class="xc-card__name">Cache</h3>
+          <p class="xc-card__desc">
+            Transparent result caching with custom key strategies.
+            Memory or Redis backend — same API, swapped in config.
+          </p>
+          <span class="xc-card__pill">@cached(ttl=300, key=lambda self, p: f"u:{p['id']}")</span>
+        </div>
+
+        <div class="xc-card">
+          <div class="xc-card__icon">◎</div>
+          <span class="xc-card__tag">SQL · MongoDB · Redis</span>
+          <h3 class="xc-card__name">DB Adapters</h3>
+          <p class="xc-card__desc">
+            Ready-to-subclass base repositories for SQL (async/sync),
+            MongoDB (Motor) and Redis — with serialization included.
+          </p>
+          <span class="xc-card__pill">BaseAsyncRepository · BaseMongoRepository · BaseRedisRepository</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Quick start ───────────────────────────────────────────────────────── -->
+  <section class="xc-quickstart">
+    <div class="xc-quickstart__inner">
+      <h2 class="xc-quickstart__title">Ready in 30 seconds</h2>
+      <p class="xc-quickstart__sub">Install, inherit, ship.</p>
+
+      <div class="xc-code-window">
+        <div class="xc-code-window__bar">
+          <span class="xc-code-window__dot xc-code-window__dot--r"></span>
+          <span class="xc-code-window__dot xc-code-window__dot--y"></span>
+          <span class="xc-code-window__dot xc-code-window__dot--g"></span>
+          <span class="xc-code-window__name">terminal</span>
+        </div>
+        <div class="xc-code-window__body"><pre><span class="xc-cm"># 1. install</span>
+uv add xcore
+
+<span class="xc-cm"># 2. create plugin.yaml</span>
+<span class="xc-fn">echo</span> <span class="xc-st">"name: my_plugin
+version: 1.0.0
+execution_mode: trusted"</span> &gt; plugin.yaml
+
+<span class="xc-cm"># 3. add a Plugin class and run</span>
+xcore plugin run my_plugin</pre>
+        </div>
+      </div>
+
+      <div class="xc-cta">
+        <a href="{{ 'installation/' | url }}" class="xc-btn xc-btn--primary">
+          Full installation guide →
+        </a>
+        <a href="{{ 'examples/demo-plugin/' | url }}" class="xc-btn xc-btn--secondary">
+          See demo plugin
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* Break home page out of Material's content constraints (fallback for no :has() support) */
+(function () {
+  var sel = ['.md-content__inner', '.md-content', '.md-main__inner', '.md-main'];
+  sel.forEach(function(s) {
+    var el = document.querySelector(s);
+    if (el) {
+      el.style.maxWidth = '100%';
+      el.style.padding  = '0';
+      el.style.margin   = '0';
+    }
+  });
+})();
+
+/* Card spotlight effect */
+document.querySelectorAll('.xc-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+    const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+    card.style.setProperty('--mx', x + '%');
+    card.style.setProperty('--my', y + '%');
+  });
+});
+</script>
+{% endblock %}

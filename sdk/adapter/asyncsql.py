@@ -31,7 +31,7 @@ class BaseAsyncRepository(ABC, Generic[T]):
         stmt = update(self.model).where(self.model.id == id).values(data)
         response = await session.execute(stmt)
         await session.commit()
-        return await response.scalar_one_or_none()
+        return response.scalar_one_or_none()
 
     async def delete(self, session: AsyncSession, id: str) -> bool:
         stmt = delete(self.model).where(self.model.id == id)
