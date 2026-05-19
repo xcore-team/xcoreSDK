@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-xcore = { git = "https://www.github.com/traoreera/xcore.git" }
+xcore = { git = "https://github.com/traoreera/xcore.git" }
 
 [dependency-groups]
 dev = [
