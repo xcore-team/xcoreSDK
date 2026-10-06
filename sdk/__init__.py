@@ -50,6 +50,7 @@ from .decorators import (
     require_service,
     route,
     sandboxed,
+    schema,
     trusted,
     validate_payload,
 )
@@ -105,6 +106,7 @@ __all__ = [
     "RuntimeConfig",
     # Core decorators
     "action",
+    "schema",
     "sandboxed",
     "trusted",
     "require_service",
